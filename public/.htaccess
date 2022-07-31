@@ -1,0 +1,9 @@
+
+#On démarre le moteur de réécriture 
+
+
+#c'est pour démarrer le moteur de réécriture
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME}% !-f
+#On réécrit l'URL , et on peut autoriser certains caractère 
+RewriteRule ^(.*)$ index.php [QSA,L]
