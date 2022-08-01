@@ -7,7 +7,10 @@ use Src\Controllers\IndexController;
 
 class Main
 {
-
+    /**
+     * Routeur principal 
+     *
+     */
     public function start()
     {
         // echo "ok";
@@ -37,7 +40,6 @@ class Main
         $params = explode('/', $uri);
         unset($params[0]);
         if ($params[1] != '') {
-
             $params2 = $params;
             // on a au moins 1 paramètre 
             // on récupère le nom du controlleur à instancier
@@ -48,13 +50,14 @@ class Main
             //on instancie le controlleur
             $controller = new $controller();
             //on récupère le 2ème paramèrtre d'url
-            $action = (isset($params2[1])) ? array_shift($params2) : 'index';
+            $action = (isset($params[1])) ? array_shift($params) : 'index';
 
 
 
+            // dd($controller, $action);
             if (method_exists($controller, $action)) {
                 // si il reste des paramètres on les passe à la méthode
-                (isset($params2[1])) ? $controller->$action($params2) : $controller->$action();
+                (isset($params[0])) ? $controller->$action($params) : $controller->$action();
             } else {
                 http_response_code(404);
                 echo "La page recherché n'existe pas";

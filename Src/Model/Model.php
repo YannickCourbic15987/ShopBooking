@@ -90,7 +90,7 @@ abstract class Model extends Data
         foreach ($model as $champ => $valeur) {
             // INSERT INTO book (title , description, picture , release_date) VALUE (?,?,?,?)
             //binValue(1, valuer)
-            if ($valeur != null && $champ != 'database' && $champ != 'table') {
+            if ($valeur !== null && $champ != 'database' && $champ != 'table') {
 
                 $champs[] = $champ;
                 $inter[] = "?";
@@ -100,9 +100,9 @@ abstract class Model extends Data
         //On transforme le tableau "champs" en une chaîne de caractères
         $liste_champs = join(' , ', $champs);
         $liste_inter = join(', ', $inter);
-        echo "<pre>";
-        var_dump($model);
-        echo "<pre/>";
+        // echo "<pre>";
+        // var_dump($model);
+        // echo "<pre/>";
         // var_dump($valeurs);
         // echo "<br/>" . $liste_champs;
         // die($liste_inter);
@@ -112,6 +112,74 @@ abstract class Model extends Data
 
         $query =  $this->queryBuild('INSERT INTO ' . $this->table . ' ('  . $liste_champs . ') VALUES (' . $liste_inter . ') ', $valeurs);
         // var_dump($query);
+        return $query;
+    }
+
+    //**méthode hydrate */
+
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $value) {
+            //** On récupère le nom du setter correspondant à la clé (key) */
+            //**titre -> setTtitre*/
+            $setter = 'set' . ucfirst($key);
+            //**On vérifie si le setter existe  */
+            if (method_exists($this, $setter)) {
+                //**On appelle le setter  */
+                $this->$setter($value);
+            }
+        }
+        return $this;
+    }
+    //*************************** FIN de CREATE**********************/
+
+
+    //****************************DEBUT DE UPDATE **********************/
+
+    public function update(int $id, string $nameId, Model $model)
+    {
+        $champs = [];
+        $valeurs = [];
+
+
+        // on va boucler pour écalter le tableau 
+
+        foreach ($model as $champ => $valeur) {
+            // UPDATE  book  SET title = ? , description = ?, picture = ? , release_date = ? WHERE id = ? 
+            //binValue(1, valuer)
+            if ($valeur !== null && $champ != 'database' && $champ != 'table') {
+
+                $champs[] = "$champ = ?";
+                $valeurs[] =  $valeur;
+            }
+        }
+        $valeurs[] = $id;
+        //On transforme le tableau "champs" en une chaîne de caractères
+        $liste_champs = join(' , ', $champs);
+
+        // echo "<pre>";
+        // var_dump($model);
+        // echo "<pre/>";
+        // var_dump($valeurs);
+        // echo "<br/>" . $liste_champs;
+        // die($liste_inter);
+        // var_dump($liste_champs);
+        // var_dump($valeurs);
+        //on exécute la requête 
+
+        $query =  $this->queryBuild('UPDATE ' . $this->table . ' SET ' . $liste_champs . ' WHERE ' . $nameId . '=  ? ', $valeurs);
+        // var_dump($query);
+        return $query;
+    }
+    //** ***************FIN UPDATE ***********************/
+
+    //*******************DEBUT DELETE ************************ */
+
+    public function delete(int $id, string $nameId)
+    {
+        $valeurs = [];
+        $valeurs[] = $id;
+        $query = $this->queryBuild('DELETE FROM ' . $this->table . ' WHERE ' . $nameId . ' =  ?', $valeurs);
         return $query;
     }
 }
