@@ -17,8 +17,6 @@ class Main
         //http:shopBooking.fr//index.php?p=product/details/one-piece-43
         //.htaccess permet de réecrire les urls 
 
-
-
         //*d'abord on récup notre url 
         $uri = $_SERVER['REQUEST_URI'];
         //*on retire le traing slash éventuelle 

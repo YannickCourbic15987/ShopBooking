@@ -1,21 +1,24 @@
 {
-    "name": "yanni/routeur",
-    "autoload": {
-        "psr-4": {
-            "Src\\Core\\": "Src/Core",
-            "Src\\Controllers\\": "Src/Controller"
-        }
-    },
-    "authors": [
-        {
-            "name": "YannickCourbic15987",
-            "email": "a.yacine2020@laposte.net"
-        }
-    ],
-    "require-dev": {
-        "symfony/var-dumper": "^6.1"
-    },
-    "require": {
-        "altorouter/altorouter": "^2.0"
+  "name": "yanni/routeur",
+  "autoload": {
+    "psr-4": {
+      "Src\\Core\\": "Src/Core",
+      "Src\\Controllers\\": "Src/Controller",
+      "Src\\Model\\": "Src/Model",
+      "Src\\Data\\": "Src/Data"
     }
+  },
+  "authors": [
+    {
+      "name": "YannickCourbic15987",
+      "email": "a.yacine2020@laposte.net"
+    }
+  ],
+  "require-dev": {
+    "symfony/var-dumper": "^6.1"
+  },
+  "require": {
+    "altorouter/altorouter": "^2.0",
+    "twig/twig": "^3.4"
+  }
 }

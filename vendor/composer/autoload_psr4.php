@@ -6,8 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    'Src\\Model\\' => array($baseDir . '/Src/Model'),
+    'Src\\Data\\' => array($baseDir . '/Src/Data'),
     'Src\\Core\\' => array($baseDir . '/Src/Core'),
     'Src\\Controllers\\' => array($baseDir . '/Src/Controller'),
 );
