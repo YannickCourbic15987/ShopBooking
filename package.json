@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "startbootstrap-heroic-features": "^5.0.5",
+    "startbootstrap-shop-homepage": "^5.0.5"
+  }
+}

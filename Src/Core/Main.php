@@ -19,7 +19,6 @@ class Main
         //réécriture d'url 
         //http:shopBooking.fr//index.php?p=product/details/one-piece-43
         //.htaccess permet de réecrire les urls 
-
         //*d'abord on récup notre url 
         $uri = $_SERVER['REQUEST_URI'];
         //*on retire le traing slash éventuelle 
@@ -28,6 +27,7 @@ class Main
         if (!empty($uri) && $uri != '/' && $uri[-1] === "/") {
             //*on élève le / 
             $uri = substr($uri, 0,  -1);
+
             // echo $uri;
             // on envoie un code de redirection permanente 
             http_response_code(301);
@@ -38,9 +38,12 @@ class Main
         //p=controlleur/methode/paramètres
         // on sépare les paramètres dans un tableau 
         $params = explode('/', $uri);
-        unset($params[0]);
-        if ($params[1] != '') {
-            $params2 = $params;
+        // unset($params[0]);
+        array_shift($params);
+
+        if ($params[0] != '') {
+
+
             // on a au moins 1 paramètre 
             // on récupère le nom du controlleur à instancier
             //on doit fabriquer son names 
@@ -49,15 +52,31 @@ class Main
             $controller = "\\Src\\Controllers\\" . ucfirst(array_shift($params)) . 'Controller';
             //on instancie le controlleur
             $controller = new $controller();
+
             //on récupère le 2ème paramèrtre d'url
-            $action = (isset($params[1])) ? array_shift($params) : 'index';
+            if (isset($params[0])) {
+                $action = array_shift($params);
+            } else {
+                $action = 'index';
+            }
+
 
 
 
             // dd($controller, $action);
             if (method_exists($controller, $action)) {
                 // si il reste des paramètres on les passe à la méthode
-                (isset($params[0])) ? $controller->$action($params) : $controller->$action();
+
+                if (isset($params[0])) {
+                    // $controller->$action($params);
+                    call_user_func_array([$controller, $action], $params);
+                    // dd($controller);
+                } else {
+
+                    $controller->$action();
+                }
+
+                // dump($params);
             } else {
                 http_response_code(404);
                 echo "La page recherché n'existe pas";

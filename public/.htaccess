@@ -4,4 +4,4 @@
 RewriteEngine on 
 RewriteCond %{REQUEST_FILENAME}% !-f
 #On réécrit l'URL , et on peut autoriser certains caractère 
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteRule ^([a-zA-Z0-9\-\_\/*])$ index.php

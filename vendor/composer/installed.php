@@ -3,7 +3,7 @@
         'name' => 'yanni/routeur',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'fb9a872da7f3b8c7dbd2a5509963e485098c25a3',
+        'reference' => '78b492affe60d625169fa2ac8b1fb9a1c8fd1696',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -58,7 +58,7 @@
         'yanni/routeur' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'fb9a872da7f3b8c7dbd2a5509963e485098c25a3',
+            'reference' => '78b492affe60d625169fa2ac8b1fb9a1c8fd1696',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
