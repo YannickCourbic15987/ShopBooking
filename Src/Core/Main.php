@@ -40,10 +40,7 @@ class Main
         $params = explode('/', $uri);
         // unset($params[0]);
         array_shift($params);
-
         if ($params[0] != '') {
-
-
             // on a au moins 1 paramètre 
             // on récupère le nom du controlleur à instancier
             //on doit fabriquer son names 

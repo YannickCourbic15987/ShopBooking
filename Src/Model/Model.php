@@ -75,11 +75,17 @@ abstract class Model extends Data
         return $query->fetch();
     }
 
+    public function findOneByEmail(string $email)
+    {
+        $query = $this->queryBuild("SELECT * FROM $this->table WHERE email = ? ", [$email]);
+        return $query->fetch();
+    }
+
     //****FIN READ *********/
 
 
     //**********************************DEBUT CREATE**********************/
-    public function create(Model $model)
+    public function create()
     {
         $champs = [];
         $valeurs = [];
@@ -87,7 +93,7 @@ abstract class Model extends Data
 
         // on va boucler pour écalter le tableau 
 
-        foreach ($model as $champ => $valeur) {
+        foreach ($this as $champ => $valeur) {
             // INSERT INTO book (title , description, picture , release_date) VALUE (?,?,?,?)
             //binValue(1, valuer)
             if ($valeur !== null && $champ != 'database' && $champ != 'table') {
@@ -117,7 +123,7 @@ abstract class Model extends Data
 
     //**méthode hydrate */
 
-    public function hydrate(array $donnees)
+    public function hydrate($donnees)
     {
         foreach ($donnees as $key => $value) {
             //** On récupère le nom du setter correspondant à la clé (key) */
@@ -136,7 +142,7 @@ abstract class Model extends Data
 
     //****************************DEBUT DE UPDATE **********************/
 
-    public function update(int $id, string $nameId, Model $model)
+    public function update(int $id, string $nameId)
     {
         $champs = [];
         $valeurs = [];
@@ -144,7 +150,7 @@ abstract class Model extends Data
 
         // on va boucler pour écalter le tableau 
 
-        foreach ($model as $champ => $valeur) {
+        foreach ($this as $champ => $valeur) {
             // UPDATE  book  SET title = ? , description = ?, picture = ? , release_date = ? WHERE id = ? 
             //binValue(1, valuer)
             if ($valeur !== null && $champ != 'database' && $champ != 'table') {

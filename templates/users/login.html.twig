@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	{# <h1>
+											Connexion
+										</h1>
+										<div class="container-sm">
+									
+									
+											<form action="#" method="post" class="form-group">
+												<label for="email" class="form-label">Email :
+												</label>
+												<input type="text" name="email" id="email" class="form-control" required>
+												<label for="password" class="form-label">Mot de passe :
+												</label>
+												<input type="password" name="password" id="password" class="form-control" autofocus required>
+												<button type="submit" class="btn btn-primary">Me connecter</button>
+											</form>
+										</div> #}
+
+	{{ form|raw}}
+{% endblock %}

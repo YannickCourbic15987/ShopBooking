@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	inscription - ShopBooking
+{% endblock %}
+
+{% block content %}
+	<h1 class="text-center text-primary text-uppercase mt-5">Inscription</h1>
+
+	<div class="container-md">
+
+		<form action="#" method="post" class="form-group">
+			<label for="firstname" class="form-label">firstname</label>
+			<input type="text" id="firstname" name="firstname" class="form-control">
+			<label for="lastname" class="form-label">lastname</label>
+			<input type="text" id="lastname" name="lastname" class="form-control">
+			<label for="email" class="form-label">email</label>
+			<input type="email" id="email" name="email" class="form-control">
+			<label for="password" class="form-label">password</label>
+			<input type="password" id="password" name="password" class="form-control">
+			<label for="password_confirm" class="form-label">password_confirm</label>
+			<input type="password" id="password_confirm" name="password_confirm" class="form-control">
+			<button class="btn btn-primary mt-5 mx-auto">valider l'inscription</button>
+		</form>
+
+	</div>
+{% endblock %}

@@ -9,6 +9,7 @@ class UsersModel extends Model
     protected $lastname;
     protected $email;
     protected $password;
+    protected $role;
     protected $created_at;
 
     public function __construct()
@@ -102,6 +103,24 @@ class UsersModel extends Model
     public function setCreatedAt($created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     */
+    public function setRole($role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
